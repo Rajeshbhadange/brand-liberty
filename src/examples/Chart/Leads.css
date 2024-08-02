@@ -1,0 +1,118 @@
+.container-leads {
+    text-align: center;
+    width: 99%;
+
+}
+
+.boxs-leads {
+    margin-left: 15px;
+    display: flex;
+    gap: 20px;
+    height: 100%;
+}
+
+
+.leads-1,
+.leads-2 {
+    width: 48%;
+    height: 350px;
+    margin: 10px;
+    display: flex;
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 200px;
+    font-size: 20px;
+}
+
+.leads-1 h4 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 0;
+
+}
+
+.menu-1 {
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    height: 10%;
+    width: 10%;
+    padding: 15px;
+    align-items: center;
+    bottom: 5em;
+    left: 22em;
+}
+
+.menu-2 {
+    position: absolute;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    height: 10%;
+    width: 10%;
+    padding: 15px;
+    align-items: center;
+    right: 0;
+}
+
+.menu-item-1 {
+    border: 1px solid #ddd;
+    list-style: none;
+    min-width: 100px;
+    position: absolute;
+    min-height: 20px;
+    margin-left: -8em;
+    margin-top: 12px;
+
+
+}
+
+.menu-item-2 {
+    border: 1px solid #ddd;
+    list-style: none;
+    min-width: 100px;
+    position: absolute;
+    min-height: 20px;
+    margin-left: -4em;
+    margin-top: 12px;
+
+}
+
+.leads-source,
+.leads-assigned {
+    /* background-color: yellow; */
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+    margin-right: -3px;
+}
+
+
+.leads-source a,
+.leads-assigned a {
+    width: 100%;
+    height: 100%;
+    /* padding: 10px; */
+    font-size: 10px;
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+    line-height: 20px;
+}
+
+
+.leads-source a:hover,
+.leads-assigned a a:hover {
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+
+}

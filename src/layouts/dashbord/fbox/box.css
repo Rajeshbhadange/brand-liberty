@@ -1,0 +1,179 @@
+.box-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    width: 98%;
+    height: 100%;
+
+}
+
+.mixed-chart {
+    margin-top: 25px;
+    position: relative;
+
+}
+
+
+.box1 {
+    width: 250px;
+    height: 110px;
+    background-color: white;
+    color: rgb(15, 12, 12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.text h2 {
+    font-size: large;
+    font-weight: 100;
+}
+
+.text1 {
+    color: rgba(0, 0, 0, 0.582);
+    width: 60%;
+    margin-bottom: 25px;
+    font-size: 15px;
+    /* font-weight: 400; */
+}
+
+.text2 {
+    color: rgba(0, 0, 0, 0.582);
+    width: 100%;
+    font-size: 15px;
+    height: 13vh;
+    margin-bottom: 40px;
+    /* font-weight: 400; */
+}
+
+.text3 {
+    color: rgba(0, 0, 0, 0.582);
+    width: 80%;
+    /* background-color: red; */
+    font-size: 15px;
+    height: 13vh;
+    /* font-weight: 400; */
+}
+
+.text3 .passage {
+    /* background-color: yellow; */
+    font-size: 15px;
+    width: 70%;
+    margin-top: 15px;
+}
+
+.text3 span {
+
+    width: 100%;
+    margin-bottom: 30px;
+    /* color: red; */
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.text {
+    color: rgba(0, 0, 0, 0.582);
+    font-size: smaller;
+    /* background-color: red; */
+    /* margin-right: 8em; */
+    margin-bottom: 25px;
+    width: 70%;
+    font-weight: 400;
+}
+
+.text h2 {
+    font-size: large;
+    font-weight: bold;
+}
+
+.box2 {
+    width: 250px;
+    height: 130px;
+    background-color: white;
+    color: rgb(15, 12, 12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding-left: 30px;
+    margin-right: 0px;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.box3 {
+    width: 250px;
+    height: 130px;
+    background-color: white;
+    color: rgb(15, 12, 12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-right: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0px 20px;
+}
+
+.box4 {
+    width: 250px;
+    height: 130px;
+    background-color: white;
+    color: rgb(15, 12, 12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-right: 0px;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.Circle {
+    width: 40%;
+    height: 100px;
+    position: relative;
+    margin-bottom: 3vh;
+    margin-right: 20px;
+}
+
+.circle-2 {
+    width: 30%;
+    height: 100px;
+    position: relative;
+    margin-bottom: 2vh;
+    margin-right: 10px;
+}
+
+.Circle img {
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.graph {
+    width: 100%;
+    height: 100%;
+    right: -2em;
+    margin-bottom: 3em;
+    position: relative;
+}
+
+/* .graph img {
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+} */

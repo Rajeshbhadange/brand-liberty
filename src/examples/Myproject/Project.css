@@ -1,0 +1,351 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 83%;
+}
+
+.col-1 {
+    position: relative;
+    display: grid;
+    margin-left: 3em;
+}
+
+.odd {
+    border-spacing: 20px;
+    padding: 10px;
+    align-items: center;
+}
+
+
+.col-12 {
+    margin-right: 12em;
+}
+
+/* Tab navigation styling */
+.nav-tabs {
+    /* border: 2px solid #b4b1b1; */
+    display: flex;
+    width: 98%;
+    margin-top: 5px;
+    height: 50px;
+    padding: 20px 10px 20px 10px;
+    align-items: center;
+}
+
+.nav-item {
+    border-bottom: 2px solid rgb(217, 225, 232);
+    border-radius: 5px;
+    list-style-type: none;
+    margin-left: 16px;
+    padding: 8px;
+    align-items: center;
+    justify-self: center;
+    color: #0056b3;
+}
+
+.nav-link {
+    /* border: 1px solid transparent; */
+    color: #007bff;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ddd #ddd #fff;
+    font-weight: 550;
+}
+
+/* Tab content styling */
+.tab-content {
+    border: 2px solid #ebebeb;
+    /* border-top: none; */
+
+    padding: 5px;
+    width: 98%;
+
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table-bordered th {
+    border: 1px solid #9ea7af;
+    padding: 10px;
+    position: relative;
+    align-items: center;
+}
+
+.table-bordered td {
+    border: 1px solid #dfe1e4;
+}
+
+.dataTable {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-bordered {
+    position: relative;
+    height: 50px;
+    width: 30%;
+    margin: auto;
+
+}
+
+/* Card styling */
+/* .card {
+    border: 1px solid #ddd;
+    border-radius: .25rem;
+    margin-bottom: 1rem;
+    padding: 10px;
+    width: 100%;
+} */
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Pagination styling */
+.pagination {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.dataTables_paginate {
+    display: flex;
+    justify-content: flex-end;
+    /* Aligns the pagination to the right */
+}
+
+
+.pagination li a {
+    position: absolute;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #007bff;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+
+}
+
+.page-item-1 {
+    position: absolute;
+    right: 0;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    margin-right: 6em;
+}
+
+.page-item-2 {
+    position: absolute;
+    right: 0;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    margin-right: 2.5em;
+}
+
+.page-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-item:first-child .page-link {
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+    pointer-events: none;
+    background-color: #ffffffa0;
+    border-color: #dee2e6;
+}
+
+.projects-datatables {
+    width: 100px;
+}
+
+.dataTables_filter {
+    position: relative;
+    height: 50px;
+
+    label {
+        position: absolute;
+        padding: 10px;
+        right: 0;
+        font-family: sans-serif;
+        text-transform: capitalize;
+    }
+
+    input {
+        font-size: 16px;
+        padding: 5px 0px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        border: none;
+        outline: none;
+        margin-left: 15px;
+    }
+
+}
+
+.dataTables_info {
+    padding: 20px;
+    position: relative;
+    right: 10px;
+}
+
+.apexcharts-legend {
+    width: 100%;
+    height: 100%;
+}
+
+.card-2 {
+    width: 100%;
+    height: 55vh;
+    margin-bottom: 10px;
+
+}
+
+.card-body-1 {
+    position: relative;
+}
+
+.apex-charts {
+    height: 400%;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.img img {
+    width: 100%;
+    height: 50vh;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.apexcharts-canvas {
+    width: 100%;
+    height: 350px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.apexcharts-svg {
+    background: transparent;
+}
+
+.menu {
+    position: absolute;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    height: 5%;
+    width: 5%;
+    padding: 15px;
+    align-items: center;
+    right: 0;
+}
+
+.menu-item {
+    border: 1px solid #ddd;
+    list-style: none;
+    min-width: 60px;
+    /* position: absolute; */
+
+    min-height: 20px;
+    /* background-color: red; */
+    /* transition: all 1s linear; */
+    margin-left: -5em;
+    margin-top: 12px;
+
+
+}
+
+.ok {
+    /* background-color: yellow; */
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+    /* margin-right: 350px; */
+}
+
+.ok a {
+    width: 100%;
+    height: 100%;
+    /* padding: 10px; */
+    font-size: 10px;
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+    line-height: 20px;
+}
+
+.ok a:hover {
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+
+}

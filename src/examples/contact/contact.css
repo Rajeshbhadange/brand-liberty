@@ -1,0 +1,137 @@
+/* Responsive Container */
+.container-fluid {
+    padding: 10px;
+    width: 98%;
+}
+
+.page-title {
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+    padding-right: 10px;
+    margin-left: 15px;
+    background-color: #f2f2f2;
+}
+
+.h2 {
+    margin-left: 20px;
+}
+
+/* Responsive Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+}
+
+.col-12 {
+    width: 100%;
+    background-color: #fdfeff;
+}
+
+
+.new {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+
+}
+
+.btn-group {
+    background-color: rgb(0, 204, 129);
+    border: 2px solid #f2f2f2;
+    padding: 10px;
+    font-size: large;
+    border-radius: 8px;
+
+}
+
+.btn-group a {
+    color: #f2f2f2;
+}
+
+.btn-new {
+    border: 2px solid #f2f2f2;
+    font-size: large;
+    border-radius: 8px;
+    color: #f2f2f2;
+    align-items: center;
+    padding: 15px;
+    background-color: rgb(6, 77, 243);
+}
+
+/* Hide columns on small screens */
+@media (max-width: 768px) {
+
+    .table td,
+    .table th {
+        font-size: 0.9rem;
+    }
+
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table th {
+        display: none;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 50%;
+        margin-right: 10px;
+    }
+
+    .table td:first-child {
+        display: none;
+    }
+
+
+}
+
+/* Make sure buttons fit well on small screens */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-group .btn {
+    margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+    .btn-group {
+        flex-direction: row;
+    }
+
+    .btn-group .btn {
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+}
+
+.footer {
+    padding: 20px;
+    font-size: large;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* src/App.css */
+.edit {
+    text-align: center;
+}
+
+.edit button {
+    padding: 6px;
+    font-size: 10px;
+    cursor: pointer;
+}
