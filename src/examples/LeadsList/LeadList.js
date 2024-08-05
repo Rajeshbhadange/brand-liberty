@@ -6,11 +6,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 import Checkbox from "@mui/material/Checkbox";
+import Card from "@mui/material/Card";
 import {
   Container,
   Grid,
   Box,
-  Card,
   CardContent,
   Typography,
   Breadcrumbs,
@@ -232,22 +232,12 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper
-      sx={{
-        width: "100%",
-        overflow: "hidden",
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: "4em",
-        border: "2px solid aliceblue",
-        boxShadow: "0px 0px 3px black",
-      }}
-    >
-      <Container fluid>
-        <Grid container spacing={3}>
+    <>
+      <Container fluid maxWidth={false}>
+        <Grid container spacing={1}>
           <Grid item xs={12}>
             <Box
-              padding="20px"
+              paddingBottom="10px"
               className="page-title-box"
               display="flex"
               alignItems="center"
@@ -269,9 +259,12 @@ export default function StickyHeadTable() {
           </Grid>
 
           <Grid item xs={12}>
+            {" "}
+            {/* Updated from xs={15} to xs={12} */}
             <Card>
               <CardContent>
                 <Grid
+                  padding="10px"
                   container
                   justifyContent="space-between"
                   alignItems="center"
@@ -301,90 +294,103 @@ export default function StickyHeadTable() {
         </Grid>
       </Container>
 
-      <TableContainer sx={{ maxHeight: 650 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead sx={{ fontWeight: "bold" }}>
-            <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  indeterminate={
-                    checked.length > 0 && checked.length < rows.length
-                  }
-                  checked={rows.length > 0 && checked.length === rows.length}
-                  onChange={handleSelectAll}
-                />
-              </TableCell>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
+      <Paper
+        sx={{
+          width: "100%",
+          overflow: "hidden",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "6em",
+          border: "2px solid aliceblue",
+          margiBottom: "4em",
+          boxShadow: "0px 0px 3px black",
+        }}
+      >
+        <TableContainer sx={{ maxHeight: 650 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead sx={{ fontWeight: "bold" }}>
+              <TableRow>
+                <TableCell padding="checkbox">
+                  <Checkbox
+                    indeterminate={
+                      checked.length > 0 && checked.length < rows.length
+                    }
+                    checked={rows.length > 0 && checked.length === rows.length}
+                    onChange={handleSelectAll}
+                  />
                 </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                const isItemSelected = checked.indexOf(row.id) !== -1;
-                return (
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.id}
-                    selected={isItemSelected}
-                    aria-checked={isItemSelected}
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
                   >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={isItemSelected}
-                        onChange={() => handleSelect(row.id)}
-                      />
-                    </TableCell>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.id === "actions" ? (
-                            <Box sx={{ display: "flex", gap: 1 }}>
-                              <Button
-                                onClick={() => handleEdit(row.id)}
-                                startIcon={<EditIcon />}
-                              />
-                              <Button
-                                onClick={() => handleTransfer(row.id)}
-                                startIcon={<TransferWithinAStationIcon />}
-                              />
-                              <Button
-                                onClick={() => handleDelete(row.id)}
-                                startIcon={<DeleteIcon />}
-                              />
-                            </Box>
-                          ) : (
-                            value
-                          )}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => {
+                  const isItemSelected = checked.indexOf(row.id) !== -1;
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.id}
+                      selected={isItemSelected}
+                      aria-checked={isItemSelected}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          checked={isItemSelected}
+                          onChange={() => handleSelect(row.id)}
+                        />
+                      </TableCell>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.id === "actions" ? (
+                              <Box sx={{ display: "flex", gap: 1 }}>
+                                <Button
+                                  onClick={() => handleEdit(row.id)}
+                                  startIcon={<EditIcon />}
+                                />
+                                <Button
+                                  onClick={() => handleTransfer(row.id)}
+                                  startIcon={<TransferWithinAStationIcon />}
+                                />
+                                <Button
+                                  onClick={() => handleDelete(row.id)}
+                                  startIcon={<DeleteIcon />}
+                                />
+                              </Box>
+                            ) : (
+                              value
+                            )}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </>
   );
 }

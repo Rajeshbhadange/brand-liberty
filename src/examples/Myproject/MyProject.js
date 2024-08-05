@@ -294,8 +294,8 @@ const MyProject = () => {
                           </div>
                         </button>
                       </div>
-                      <div className="img">
-                        <img src="./images/Graph.png" alt=""></img>
+                      <div className="image">
+                        <img src="./images/G1.png" alt=""></img>
                       </div>
                     </div>
                   </div>

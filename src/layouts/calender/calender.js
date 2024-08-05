@@ -21,23 +21,23 @@ const ReportDates = () => {
         display: "inline-block",
         flexDirection: "column",
         alignItems: "center",
-        p: 6,
+        p: 1,
         border: "1px solid #e0e0e0",
-        borderRadius: 1,
+        borderRadius: 0.5,
         boxShadow: 1,
         maxWidth: 300,
-        margin: "0 auto",
+        marginRight: 2,
+        marginBottom: "20em",
       }}
     >
-      <Typography variant="h6" gutterBottom>
-        Reports dates are
-      </Typography>
+      <Typography gutterBottom>Reports dates are</Typography>
       <Typography variant="body1" gutterBottom>
         Start: {startDate} End: {endDate}
       </Typography>
       <Button
         variant="contained"
         color="primary"
+        marginTop="20px"
         startIcon={<AddCircleOutline />}
         onClick={handleChangeDates}
       >
@@ -49,9 +49,23 @@ const ReportDates = () => {
 
 function Calendar() {
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        p: 2,
+      }}
+    >
       <ReportDates />
-      <div className="calendar">
+      <Box
+        sx={{
+          flexGrow: 1,
+          border: "2px Solid rgb(217, 225, 232)",
+          p: 1,
+          borderRadius: 0.5,
+          boxShadow: 1,
+        }}
+      >
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -60,11 +74,11 @@ function Calendar() {
             center: "title",
             end: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
-          height="90vh"
+          height="70vh"
           // Additional FullCalendar props can be added here
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

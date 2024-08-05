@@ -23,7 +23,7 @@ const containerStyle = {
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
-  gap: "20px",
+  gap: "15px",
 };
 
 const overviewStyle = {
@@ -56,8 +56,8 @@ const App = () => {
       <Box
         sx={{
           flex: "1 1 0",
-          marginRight: "10em",
-          marginLeft: "3em",
+          marginRight: "7em",
+          marginLeft: "2em",
           hight: "100%",
           jstifyContent: "center",
           alignItem: "center",
@@ -242,13 +242,13 @@ const App = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          paddingRight: 8,
-          marginLeft: "2em",
+          paddingRight: 2,
+          width: "32%",
         }}
       >
         <Box
           sx={{
-            flex: "1 1 auto",
+            flex: "1 1 0",
             width: "100%",
           }}
         >
@@ -260,9 +260,10 @@ const App = () => {
                 sx={{
                   overviewStyle,
                   display: "flex",
+                  justifyContent: "space-between",
                 }}
               >
-                My to-do items <div className="card-body-22">new to do</div>
+                My to-do items <div style={{ color: "blue" }}>new to do</div>
               </Typography>
               <div id="mysortable" className="ui-sortable">
                 {/* Sortable items will be rendered here */}
