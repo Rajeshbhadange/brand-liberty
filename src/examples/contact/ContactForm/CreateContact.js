@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./CreateContact.css";
 import {
   TextField,
   Button,
@@ -16,18 +17,14 @@ import {
 
 const CreateContact = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    primaryEmail: "",
+    name: "",
+    email: "",
     invoicesPermission: false,
     estimatesPermission: false,
     contractsPermission: false,
     proposalsPermission: false,
     supportPermission: false,
-    projectsPermission: false,
-    secondName: "",
-    secondaryEmail: "",
-    primaryPhone: "",
-    mobilePhone: "",
+    mobileNo: "",
     assignUser: "",
     xfinitySoftPassword: "",
   });
@@ -46,12 +43,9 @@ const CreateContact = () => {
   };
 
   const textFields = [
-    { label: "First Name", name: "firstName" },
-    { label: "Second Name", name: "secondName" },
-    { label: "Primary Email", name: "primaryEmail" },
-    { label: "Secondary Email", name: "secondaryEmail" },
-    { label: "Primary Phone", name: "primaryPhone" },
-    { label: "Mobile Phone", name: "mobilePhone" },
+    { label: "Name", name: "name" },
+    { label: "Email", name: "email" },
+    { label: "Mobile Number", name: "mobileNo" },
     {
       label: "Password",
       name: "Password",
@@ -76,81 +70,93 @@ const CreateContact = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        width: "97%",
-        p: 3,
-        border: "2px solid #f2f2f2",
-        backgroundColor: "white",
-        boxShadow: 2,
-      }}
-    >
-      <form onSubmit={handleSubmit}>
-        <Typography variant="h4" gutterBottom>
-          Create Contact
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Basic Information
-        </Typography>
-        <Grid container spacing={2}>
-          {textFields.map((field) => (
-            <Grid item xs={12} sm={6} key={field.name}>
-              <TextField
-                label={field.label}
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                type={field.type || "text"}
-                fullWidth
-              />
-            </Grid>
-          ))}
-          <Grid item xs={12} sm={6}>
-            <FormControl fullWidth>
-              <InputLabel>Assign User</InputLabel>
-              <Select
-                label="Assign User"
-                name="assignUser"
-                value={formData.assignUser}
-                onChange={handleChange}
-              >
-                {users.map((user) => (
-                  <MenuItem key={user.value} value={user.value}>
-                    {user.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-        <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-          Permissions
-        </Typography>
-        <FormGroup>
-          {checkboxes.map((checkbox) => (
-            <FormControlLabel
-              control={
-                <Checkbox
-                  name={checkbox.name}
-                  checked={formData[checkbox.name]}
+    <>
+      <h2 className="cc-link">
+        <div className="header-container">
+          <h5> Create Contacts</h5>
+          <h6>
+            <a href="/Dashboard">Dashboard</a>
+            <span id="sp"> / Create Contacts</span>
+          </h6>
+        </div>
+      </h2>
+      <Box
+        sx={{
+          marginTop: "-2em",
+          width: "94%",
+          p: 3,
+          border: "2px solid #f2f2f2",
+          backgroundColor: "#FFF",
+          marginBottom: "3em",
+          boxShadow: 2,
+          borderRadius: "4px",
+          marginLeft: "25px",
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h6" gutterBottom>
+            Basic Information
+          </Typography>
+          <Grid>
+            {textFields.map((field) => (
+              <Grid item xs={12} sm={6} key={field.name} mt={2}>
+                <TextField
+                  label={field.label}
+                  name={field.name}
+                  value={formData[field.name]}
                   onChange={handleChange}
+                  type={field.type || "text"}
+                  fullWidth
                 />
-              }
-              label={checkbox.label}
-              key={checkbox.name}
-            />
-          ))}
-        </FormGroup>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
-        >
-          Save Contact
-        </Button>
-      </form>
-    </Box>
+              </Grid>
+            ))}
+            <Grid item xs={12} sm={6} mt={2}>
+              <FormControl fullWidth>
+                <InputLabel>Assign User</InputLabel>
+                <Select
+                  label="Assign User"
+                  name="assignUser"
+                  value={formData.assignUser}
+                  onChange={handleChange}
+                >
+                  {users.map((user) => (
+                    <MenuItem key={user.value} value={user.value}>
+                      {user.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+            Permissions
+          </Typography>
+          <FormGroup>
+            {checkboxes.map((checkbox) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name={checkbox.name}
+                    checked={formData[checkbox.name]}
+                    onChange={handleChange}
+                  />
+                }
+                label={checkbox.label}
+                key={checkbox.name}
+              />
+            ))}
+          </FormGroup>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ mt: 2 }}
+          >
+            Save Contact
+          </Button>
+        </form>
+      </Box>
+    </>
   );
 };
 

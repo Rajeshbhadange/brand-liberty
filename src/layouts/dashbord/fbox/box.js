@@ -21,14 +21,13 @@ const MyBox = () => {
       <div className="box1">
         <div className="text1">
           <h2>100</h2>
-          Contact
-          <br></br>
+          Contact<br></br>
           view all Contact
         </div>
-        <div className="graph">
+        <div className="graph-1">
           <ChartContainer
-            width={170}
-            height={140}
+            width={160}
+            height={130}
             series={[{ data: uData, label: "uv", type: "bar" }]}
             xAxis={[{ scaleType: "band", data: xLabels }]}
           >
@@ -40,7 +39,7 @@ const MyBox = () => {
       <div className="box2">
         <div className="text2">
           <h2>100</h2>
-          Contact<br></br>
+          Leads<br></br>
           view all Contact
         </div>
         <div className="Circle">
@@ -59,10 +58,10 @@ const MyBox = () => {
           <span>14</span>
           <div className="passage">Tasks Not Completed View All</div>
         </div>
-        <div className="graph">
+        <div className="graph-2">
           <ChartContainer
-            width={170}
-            height={140}
+            width={160}
+            height={130}
             series={[{ data: uData, label: "uv", type: "bar" }]}
             xAxis={[{ scaleType: "band", data: xLabels }]}
           >

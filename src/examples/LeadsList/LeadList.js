@@ -41,27 +41,23 @@ const createData = (
   id,
   name,
   email,
-  Card,
-  CardContent,
   phone,
   leadSource,
   leadStatus,
   leadType,
   createdAt,
   updatedAt
-) => {
-  return {
-    id,
-    name,
-    email,
-    phone,
-    leadSource,
-    leadStatus,
-    leadType,
-    createdAt,
-    updatedAt,
-  };
-};
+) => ({
+  id,
+  name,
+  email,
+  phone,
+  leadSource,
+  leadStatus,
+  leadType,
+  createdAt,
+  updatedAt,
+});
 
 const rows = [
   createData(
@@ -177,56 +173,34 @@ const rows = [
   // Add more rows as needed
 ];
 
-export default function StickyHeadTable() {
+function LeadList() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [checked, setChecked] = useState([]);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const handleChangePage = (event, newPage) => setPage(newPage);
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
-  const handleEdit = (id) => {
-    console.log("Edit entry", id);
-  };
+  const handleEdit = (id) => console.log("Edit entry", id);
 
-  const handleTransfer = (id) => {
-    console.log("Transfer entry", id);
-  };
+  const handleTransfer = (id) => console.log("Transfer entry", id);
 
-  const handleDelete = (id) => {
-    console.log("Delete entry", id);
-  };
+  const handleDelete = (id) => console.log("Delete entry", id);
 
   const handleSelectAll = (event) => {
-    if (event.target.checked) {
-      setChecked(rows.map((row) => row.id));
-    } else {
-      setChecked([]);
-    }
+    setChecked(event.target.checked ? rows.map((row) => row.id) : []);
   };
 
   const handleSelect = (id) => {
     const selectedIndex = checked.indexOf(id);
-    let newChecked = [];
-
-    if (selectedIndex === -1) {
-      newChecked = newChecked.concat(checked, id);
-    } else if (selectedIndex === 0) {
-      newChecked = newChecked.concat(checked.slice(1));
-    } else if (selectedIndex === checked.length - 1) {
-      newChecked = newChecked.concat(checked.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newChecked = newChecked.concat(
-        checked.slice(0, selectedIndex),
-        checked.slice(selectedIndex + 1)
-      );
-    }
+    const newChecked =
+      selectedIndex === -1
+        ? [...checked, id]
+        : checked.filter((item) => item !== id);
 
     setChecked(newChecked);
   };
@@ -238,52 +212,41 @@ export default function StickyHeadTable() {
           <Grid item xs={12}>
             <Box
               paddingBottom="10px"
+              width="100%"
               className="page-title-box"
               display="flex"
               alignItems="center"
               justifyContent="space-between"
+              marginTop="2em"
             >
-              <Typography variant="h4" component="h4">
-                Tasks
+              <Typography variant="h5" component="h4">
+                Leads
               </Typography>
               <Breadcrumbs aria-label="breadcrumb">
-                <Link
-                  color="inherit"
-                  href="https://uppingcrm.xfinitysoft.app/home"
-                >
+                <Link href="#Dashboard" color="textPrimary">
                   Dashboard
                 </Link>
-                <Typography color="textPrimary">Tasks</Typography>
+                <Typography color="inherit">Leads</Typography>
               </Breadcrumbs>
             </Box>
           </Grid>
 
-          <Grid item xs={12}>
-            {" "}
-            {/* Updated from xs={15} to xs={12} */}
+          <Grid item xs={12} width="100%">
             <Card>
               <CardContent>
                 <Grid
-                  padding="10px"
+                  padding="5px"
                   container
                   justifyContent="space-between"
                   alignItems="center"
                 >
                   <Grid item>
-                    <Button
-                      variant="contained"
-                      color="success"
-                      // href="https://uppingcrm.xfinitysoft.app/exportTasks"
-                    >
+                    <Button variant="contained" color="success">
                       Export CSV
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      // href="https://uppingcrm.xfinitysoft.app/tasks/create"
-                    >
+                    <Button variant="contained" color="primary">
                       New
                     </Button>
                   </Grid>
@@ -296,13 +259,13 @@ export default function StickyHeadTable() {
 
       <Paper
         sx={{
-          width: "100%",
+          width: "97%",
           overflow: "hidden",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "6em",
+          margin: "25px",
           border: "2px solid aliceblue",
-          margiBottom: "4em",
+          marginBottom: "4em",
           boxShadow: "0px 0px 3px black",
         }}
       >
@@ -317,6 +280,7 @@ export default function StickyHeadTable() {
                     }
                     checked={rows.length > 0 && checked.length === rows.length}
                     onChange={handleSelectAll}
+                    aria-label="select all rows"
                   />
                 </TableCell>
                 {columns.map((column) => (
@@ -334,7 +298,7 @@ export default function StickyHeadTable() {
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
-                  const isItemSelected = checked.indexOf(row.id) !== -1;
+                  const isItemSelected = checked.includes(row.id);
                   return (
                     <TableRow
                       hover
@@ -348,6 +312,7 @@ export default function StickyHeadTable() {
                         <Checkbox
                           checked={isItemSelected}
                           onChange={() => handleSelect(row.id)}
+                          aria-label={`select row ${row.id}`}
                         />
                       </TableCell>
                       {columns.map((column) => {
@@ -359,18 +324,21 @@ export default function StickyHeadTable() {
                                 <Button
                                   onClick={() => handleEdit(row.id)}
                                   startIcon={<EditIcon />}
+                                  aria-label={`edit entry ${row.id}`}
                                 />
                                 <Button
                                   onClick={() => handleTransfer(row.id)}
                                   startIcon={<TransferWithinAStationIcon />}
+                                  aria-label={`transfer entry ${row.id}`}
                                 />
                                 <Button
                                   onClick={() => handleDelete(row.id)}
                                   startIcon={<DeleteIcon />}
+                                  aria-label={`delete entry ${row.id}`}
                                 />
                               </Box>
                             ) : (
-                              value
+                              <Typography>{value}</Typography>
                             )}
                           </TableCell>
                         );
@@ -394,3 +362,5 @@ export default function StickyHeadTable() {
     </>
   );
 }
+
+export default LeadList;

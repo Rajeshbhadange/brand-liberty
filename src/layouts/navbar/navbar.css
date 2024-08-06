@@ -1,16 +1,13 @@
 /* src/Appbar.css */
 body {
-    margin-left: 14em;
-    width: 84%;
-    background-color: rgb(255, 255, 255);
+    margin-left: 13em;
+    width: 85%;
 }
 
 .navbar {
-    background-color: white !important;
-    position: fixed;
+    background-color: #FFFFFF !important;
     color: rgb(0, 0, 0);
-    width: 60%;
-    /* margin-right: 25px; */
+    width: 300px;
 }
 
 .arrow {
@@ -83,7 +80,6 @@ body {
     position: absolute;
     top: 80px;
     font-size: 20px;
-    margin-left: 15px;
     font-weight: 900;
 }
 
@@ -93,6 +89,6 @@ body {
     position: absolute;
     top: 80px;
     right: 0;
-    margin-right: 15px;
+    margin-right: 20px;
 
 }

@@ -42,10 +42,6 @@ const Appbar = () => {
             Xfinitysoft
           </Typography>
         </div>{" "}
-        <div className="name">Dashboard</div>
-        <div className="dh">
-          <a href="#Dashboard">Dashboard/Home</a>
-        </div>
       </Toolbar>{" "}
     </AppBar>
   );

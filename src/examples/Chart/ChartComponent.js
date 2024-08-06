@@ -41,8 +41,8 @@ const ChartComponent = () => {
   };
 
   return (
-    <div className="card">
-      <div className="card-body">
+    <div className="Card-chart">
+      <div className="card-body-c">
         <h4 className="card-title mb-4">Contacts and leads added by month</h4>
         <div className="mt-3" style={{ position: "relative" }}>
           <div className="apex-charts" style={{ minHeight: "365px" }}>
@@ -50,7 +50,7 @@ const ChartComponent = () => {
               options={chartOptions}
               series={chartOptions.series}
               type="line"
-              height={600}
+              height={550}
             />
           </div>
         </div>

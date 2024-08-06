@@ -1,20 +1,21 @@
 /* Responsive Container */
 .container-fluid {
     padding: 10px;
+    margin-left: 15px;
     width: 98%;
+    margin-bottom: 5em;
 }
 
 .page-title {
     display: flex;
     justify-content: space-between;
-    width: 97%;
-    padding-right: 10px;
-    margin-left: 15px;
-    background-color: #f2f2f2;
+    width: 100%;
 }
 
-.h2 {
-    margin-left: 20px;
+.link {
+    padding-right: 10px;
+    font-size: 18px;
+    text-align: center;
 }
 
 /* Responsive Table */
@@ -30,22 +31,32 @@
 .col-12 {
     width: 100%;
     background-color: #fdfeff;
+    border: 2px solid rgb(234, 234, 234);
+    box-shadow: 1px 20px 3px(0, 0, 3);
+    border-radius: 5px;
+
 }
 
+.scv {
+    margin-bottom: 20px;
+}
 
 .new {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 20%;
 
+}
+
+.text-end {
+    padding-inline: 10px;
 }
 
 .btn-group {
     background-color: rgb(0, 204, 129);
     border: 2px solid #f2f2f2;
     padding: 10px;
-    font-size: large;
+    font-size: 18px;
     border-radius: 8px;
 
 }
@@ -56,12 +67,13 @@
 
 .btn-new {
     border: 2px solid #f2f2f2;
-    font-size: large;
-    border-radius: 8px;
+    font-size: 15px;
+    border-radius: 6px;
     color: #f2f2f2;
     align-items: center;
-    padding: 15px;
-    background-color: rgb(6, 77, 243);
+    width: 100%;
+    padding: 5px;
+    background-color: royalblue;
 }
 
 /* Hide columns on small screens */

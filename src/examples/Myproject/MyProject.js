@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-
 import "./Project.css";
-// import { Button } from "@mui/material";
 
 const MyProject = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const data = [];
+  const data = []; // Sample data, replace with actual data as needed
   const [dropdownStates, setDropdownStates] = useState({});
+
+  // Toggle dropdown menu state
   const toggleDropdown = (section) => {
     setDropdownStates((prevState) => ({
       ...prevState,
       [section]: !prevState[section],
     }));
   };
+
   return (
     <div className="col-1">
       <Tabs selectedIndex={activeTab} onSelect={(index) => setActiveTab(index)}>

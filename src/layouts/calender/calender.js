@@ -21,13 +21,14 @@ const ReportDates = () => {
         display: "inline-block",
         flexDirection: "column",
         alignItems: "center",
-        p: 1,
+        p: 3,
         border: "1px solid #e0e0e0",
-        borderRadius: 0.5,
+        borderRadius: 1,
         boxShadow: 1,
-        maxWidth: 300,
-        marginRight: 2,
-        marginBottom: "20em",
+        maxWidth: 350,
+        marginRight: 1,
+        marginBottom: "22em",
+        backgroundColor: "	#FFFFFF",
       }}
     >
       <Typography gutterBottom>Reports dates are</Typography>
@@ -53,7 +54,8 @@ function Calendar() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        p: 2,
+        width: "98%",
+        p: 3,
       }}
     >
       <ReportDates />
@@ -61,9 +63,12 @@ function Calendar() {
         sx={{
           flexGrow: 1,
           border: "2px Solid rgb(217, 225, 232)",
-          p: 1,
-          borderRadius: 0.5,
+          marginLeft: "4em",
+          p: 2,
+          borderRadius: 1,
           boxShadow: 1,
+          backgroundColor: "	#FFFFFF",
+          marginBottom: "2em",
         }}
       >
         <FullCalendar

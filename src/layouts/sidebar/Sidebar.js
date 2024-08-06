@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import {} from "@fortawesome/free-solid-svg-icons";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import {
   faAddressBook,
   faUsers,
@@ -37,17 +37,7 @@ const Sidebar = () => {
     settings: false,
   });
 
-  // sidebar navigate
   const navigate = useNavigate();
-
-  const menuItems = [
-    { label: "Dashboard", path: "/" },
-    { label: "My Project", path: "/myproject" },
-    { label: "Calendar", path: "/calendar" },
-    { label: "Contact List", path: "/contactList" },
-    { label: "Create Contact", path: "/CreateContact" },
-    // Add more items as needed
-  ];
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -56,23 +46,25 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleDropdown = (section) => {
-    setDropdownStates((prevState) => ({
-      ...prevState,
-      [section]: !prevState[section],
-    }));
+    setDropdownStates((prevState) => {
+      const newState = {};
+      for (const key in prevState) {
+        newState[key] = key === section ? !prevState[key] : false;
+      }
+      return newState;
+    });
   };
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen((prevState) => !prevState);
   };
 
-  // Memoize handleOutsideClick
   const handleOutsideClick = useCallback(
     (e) => {
       if (
         isSidebarOpen &&
         !e.target.closest(".sidebar") &&
-        !e.target.closest(".sidebar-toggle")
+        e.target.closest(".sidebar-toggle")
       ) {
         setIsSidebarOpen(false);
       }
@@ -87,10 +79,10 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+      <div className={`sidebar ${isSidebarOpen ? "open" : "close"}`}>
         <h2>Upping CRM</h2>
         <button className="sidebar-toggle" onClick={handleSidebarToggle}>
-          {isSidebarOpen ? <CloseIcon /> : <MenuIcon />}
+          {isSidebarOpen ? <MenuIcon /> : <CloseIcon />}
         </button>
 
         <h6>MENU</h6>
@@ -98,7 +90,8 @@ const Sidebar = () => {
         <ul>
           <li>
             <a href="#Dashboard" onClick={() => handleNavigation("/")}>
-              Dashboard
+              <DashboardIcon size="0.5x" fontSize="15px" />
+              <div style={{ marginRight: "4em", fontSize: 15 }}>Dashboard</div>
             </a>
           </li>
           <li>
@@ -107,25 +100,26 @@ const Sidebar = () => {
                 <div>
                   <FontAwesomeIcon icon={faAddressBook} size="1x" />
                 </div>
-                <div ClassName="text">Contact</div>
-                {menuItems.map((item) => (
-                  <li
-                    key={item.label}
-                    onClick={() => handleNavigation(item.contactList.js)}
-                  >
-                    {item.contactList}
-                  </li>
-                ))}
-
+                <div style={{ marginRight: "3em", fontSize: 15 }}>Contact</div>
                 <ExpandMoreIcon />
               </a>
               {dropdownStates.contact && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#ListContact">List Contact</a>
+                    <a
+                      href="#ListContact"
+                      onClick={() => handleNavigation("/contactList")}
+                    >
+                      List Contact
+                    </a>
                   </li>
                   <li>
-                    <a href="#CreateNew">Create New</a>
+                    <a
+                      href="#CreateNew"
+                      onClick={() => handleNavigation("/CreateContact")}
+                    >
+                      Create New
+                    </a>
                   </li>
                 </ul>
               )}
@@ -135,15 +129,26 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Leads" onClick={() => toggleDropdown("leads")}>
                 <FontAwesomeIcon icon={faUsers} size="1x" />
-                Leads <ExpandMoreIcon />
+                <div style={{ marginRight: "3.5em", fontSize: 15 }}>Leads</div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.leads && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#ListLead">List Lead</a>
+                    <a
+                      href="#LeadList"
+                      onClick={() => handleNavigation("/LeadList")}
+                    >
+                      List Lead
+                    </a>
                   </li>
                   <li>
-                    <a href="#Create-new">Create new</a>
+                    <a
+                      href="#CreateLead"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Create new
+                    </a>
                   </li>
                 </ul>
               )}
@@ -153,7 +158,8 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Events" onClick={() => toggleDropdown("events")}>
                 <FontAwesomeIcon icon={faCalendar} size="1x" />
-                Events <ExpandMoreIcon />
+                <div style={{ marginRight: "3em", fontSize: 15 }}>Events </div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.events && (
                 <ul className="dropdown-menu">
@@ -166,10 +172,20 @@ const Sidebar = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="#Sheard-Calender">Sheard Calender</a>
+                    <a
+                      href="#Sheard-Calender"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Shared Calendar
+                    </a>
                   </li>
                   <li>
-                    <a href="#Create-Calender">Create</a>
+                    <a
+                      href="#CreateEvent"
+                      onClick={() => handleNavigation("/CreateEvent")}
+                    >
+                      Create new
+                    </a>
                   </li>
                 </ul>
               )}
@@ -179,18 +195,34 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Tasks" onClick={() => toggleDropdown("tasks")}>
                 <FontAwesomeIcon icon={faTasks} size="1x" />
-                Tasks <ExpandMoreIcon />
+                <div style={{ marginRight: "3.5em", fontSize: 15 }}>Tasks</div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.tasks && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#TasksList">Tasks List</a>
+                    <a
+                      href="#TaskList"
+                      onClick={() => handleNavigation("/TaskList")}
+                    >
+                      Tasks List
+                    </a>
                   </li>
                   <li>
-                    <a href="#ViewTasks">Tasks Card</a>
+                    <a
+                      href="#ViewTasks"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Tasks Card
+                    </a>
                   </li>
                   <li>
-                    <a href="#Create-Task">Create new</a>
+                    <a
+                      href="#Create-Task"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Create new
+                    </a>
                   </li>
                 </ul>
               )}
@@ -200,24 +232,50 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Sales" onClick={() => toggleDropdown("sales")}>
                 <FontAwesomeIcon icon={faBalanceScale} size="1x" />
-                Sales <ExpandMoreIcon />
+                <div style={{ marginRight: "3.5em", fontSize: 15 }}>Sales</div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.sales && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#Proposal">Proposal</a>
+                    <a
+                      href="#Proposal"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Proposal
+                    </a>
                   </li>
                   <li>
-                    <a href="#Estimates">Estimates</a>
+                    <a
+                      href="#Estimates"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Estimates
+                    </a>
                   </li>
                   <li>
-                    <a href="#Invoices">Invoices</a>
+                    <a
+                      href="#Invoices"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Invoices
+                    </a>
                   </li>
                   <li>
-                    <a href="#Payment">Payment</a>
+                    <a
+                      href="#Payment"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Payment
+                    </a>
                   </li>
                   <li>
-                    <a href="#Items">Items</a>
+                    <a
+                      href="#Items"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Items
+                    </a>
                   </li>
                 </ul>
               )}
@@ -227,15 +285,26 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Expence" onClick={() => toggleDropdown("expence")}>
                 <FontAwesomeIcon icon={faMoneyBill} size="1x" />
-                Expence <ExpandMoreIcon />
+                <div style={{ marginRight: "2em", fontSize: 15 }}>Expence</div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.expence && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#Expence List">Expence List</a>
+                    <a
+                      href="#Expence List"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Expence List
+                    </a>
                   </li>
                   <li>
-                    <a href="#ExpenceCeate">Create New</a>
+                    <a
+                      href="#ExpenceCeate"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Create New
+                    </a>
                   </li>
                 </ul>
               )}
@@ -245,15 +314,26 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#contract" onClick={() => toggleDropdown("contract")}>
                 <FontAwesomeIcon icon={faFileContract} size="1x" />
-                Contract <ExpandMoreIcon />
+                <div style={{ marginRight: "2em", fontSize: 15 }}>Contract</div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.contract && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#ContractList">Contract List</a>
+                    <a
+                      href="#ContractList"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Contract List
+                    </a>
                   </li>
                   <li>
-                    <a href="#ContractsNew">Create New</a>
+                    <a
+                      href="#ContractsNew"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Create New
+                    </a>
                   </li>
                 </ul>
               )}
@@ -263,7 +343,10 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Project" onClick={() => toggleDropdown("project")}>
                 <FontAwesomeIcon icon={faProjectDiagram} size="1x" />
-                Project <ExpandMoreIcon />
+                <div style={{ marginRight: "2.8em", fontSize: 15 }}>
+                  Project
+                </div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.project && (
                 <ul className="dropdown-menu">
@@ -276,7 +359,12 @@ const Sidebar = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="#createProject">Create new</a>
+                    <a
+                      href="#createProject"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Create new
+                    </a>
                   </li>
                 </ul>
               )}
@@ -286,15 +374,28 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Suppot" onClick={() => toggleDropdown("suppot")}>
                 <FontAwesomeIcon icon={faLifeRing} size="1x" />
-                Support <ExpandMoreIcon />
+                <div style={{ marginRight: "2.5em", fontSize: 15 }}>
+                  Support
+                </div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.suppot && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#List">List</a>
+                    <a
+                      href="#List"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      List
+                    </a>
                   </li>
                   <li>
-                    <a href="#SupportCreate">Create New</a>
+                    <a
+                      href="#SupportCreate"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Create New
+                    </a>
                   </li>
                 </ul>
               )}
@@ -304,53 +405,105 @@ const Sidebar = () => {
             <div className="dropdown">
               <a href="#Reports" onClick={() => toggleDropdown("reports")}>
                 <FontAwesomeIcon icon={faFile} size="1x" />
-                Reports <ExpandMoreIcon />
+                <div style={{ marginRight: "2.2em", fontSize: 15 }}>
+                  Reports
+                </div>
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.reports && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#Sales">Sales</a>
+                    <a
+                      href="#Sales"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Sales
+                    </a>
                   </li>
                   <li>
-                    <a href="#Expence">Expence</a>
+                    <a
+                      href="#Expence"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Expence
+                    </a>
                   </li>
                   <li>
-                    <a href="#ExpenceVSIncome">Expence Vs Income</a>
+                    <a
+                      href="#ExpenceVSIncome"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Expence Vs Income
+                    </a>
                   </li>
                 </ul>
               )}
             </div>
           </li>
           <li>
-            <div ClassName="pre">
-              <a href="#Preference" className="pre">
+            <div className="pre">
+              <a
+                href="#Preference"
+                className="pre"
+                onClick={() => handleNavigation("/CreateLead")}
+              >
                 <FontAwesomeIcon icon={faCog} size="1x" />
-                Preference
+                <div style={{ marginLeft: "1.5em", fontSize: 15 }}>
+                  Preference
+                </div>
               </a>
             </div>
           </li>
           <li>
             <div className="dropdown">
               <a href="#Settings" onClick={() => toggleDropdown("settings")}>
-                <FontAwesomeIcon icon={faCogs} size="1x" />
-                Settings <ExpandMoreIcon />
+                <FontAwesomeIcon icon={faCogs} size="1x" />{" "}
+                <div style={{ marginRight: "2.7em", fontSize: 15 }}>
+                  Settings
+                </div>{" "}
+                <ExpandMoreIcon />
               </a>
               {dropdownStates.settings && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="#Users">Users</a>
+                    <a
+                      href="#Users"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Users
+                    </a>
                   </li>
                   <li>
-                    <a href="#CustomField">Custom Field</a>
+                    <a
+                      href="#CustomField"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Custom Field
+                    </a>
                   </li>
                   <li>
-                    <a href="#CustomFieldList">Custom Field Lists</a>
+                    <a
+                      href="#CustomFieldList"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Custom Field Lists
+                    </a>
                   </li>
                   <li>
-                    <a href="#Roles">Roles</a>
+                    <a
+                      href="#Roles"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Roles
+                    </a>
                   </li>
                   <li>
-                    <a href="#Importer">Importer</a>
+                    <a
+                      href="#Importer"
+                      onClick={() => handleNavigation("/CreateLead")}
+                    >
+                      Importer
+                    </a>
                   </li>
                 </ul>
               )}

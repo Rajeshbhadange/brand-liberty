@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import "./contact.css";
 import { Button } from "@mui/material";
 import Edit from "./module/edit";
-// import CreateContact from "./ContactForm/CreateContact";
 
 const ContactList = ({ contacts }) => {
   const [search, setSearch] = useState("");
@@ -19,9 +18,6 @@ const ContactList = ({ contacts }) => {
       contact.firstname.toLowerCase().includes(search.toLowerCase()) ||
       contact.secondname.toLowerCase().includes(search.toLowerCase())
   );
-  // const handleClick = () => {
-  //   console.info("You clicked the Chip.");
-  // };
   function transferEntry(id) {
     console.log("Transfer entry", id);
   }
@@ -30,56 +26,49 @@ const ContactList = ({ contacts }) => {
     console.log("Delete entry", id);
   }
 
-  // const [show, setShow] = useState(false);
-
-  // const showModal = () => {
-  //   setShow(true);
-  // };
-
-  // const hideModal = () => {
-  //   setShow(false);
-  // };
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
   return (
     <div className="container-fluid">
-      {/* Page Title */}
       <div className="row">
-        {/* <div className="col-12"> */}
         <div className="page-title">
           <h2 className="h2">Contacts</h2>
           <h2 className="link">
             <Link to="/home">Dashboard/Home</Link>
           </h2>
         </div>
-        {/* </div> */}
       </div>
 
       {/* Buttons */}
-      <div className="row">
-        <div className="col-12">
-          <div className="card">
-            <div className="card-body">
-              <div className="row">
-                <div className="new">
-                  <div
-                    className="btn-group focus-btn-group"
-                    role="group"
-                    aria-label="Basic example"
-                  >
-                    <a href="/exportContacts" className="btn-success">
-                      Export CSV
-                    </a>
-                  </div>
-                  <div className="col-md-6 text-end">
-                    <Button>
-                      <Link to="/CobtactForm/CreateContact" className="btn-new">
-                        New
-                        {/* <CreateContact /> */}
-                      </Link>
-                    </Button>
+      <div className="scv">
+        <div className="row">
+          <div className="col-12">
+            <div className="card">
+              <div className="card-body">
+                <div className="row">
+                  <div className="new">
+                    <div
+                      className="btn-group focus-btn-group"
+                      role="group"
+                      aria-label="Basic example"
+                    >
+                      <a href="/exportContacts" className="btn-success">
+                        Export CSV
+                      </a>
+                    </div>
+                    <div className="col-md-6 text-end">
+                      <Button>
+                        <Link
+                          to="/CobtactForm/CreateContact"
+                          className="btn-new"
+                        >
+                          New
+                          {/* <CreateContact /> */}
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -87,7 +76,6 @@ const ContactList = ({ contacts }) => {
           </div>
         </div>
       </div>
-
       {/* Table */}
       <div className="row">
         <div className="col-12">
