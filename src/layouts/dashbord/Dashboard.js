@@ -276,9 +276,11 @@ const App = () => {
                     overviewStyle,
                     display: "flex",
                     justifyContent: "space-between",
+                    fontSize: "15px",
+                    fontWeight: "bold",
                   }}
                 >
-                  My to-do items <div style={{ color: "blue" }}>new to do</div>
+                  My to-do items <div style={{ color: "blue" }}>New To Do</div>
                 </Typography>
                 <div id="mysortable" className="ui-sortable">
                   {/* Sortable items will be rendered here */}

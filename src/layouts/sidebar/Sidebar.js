@@ -443,9 +443,9 @@ const Sidebar = () => {
           <li>
             <div className="pre">
               <a
-                href="#Preference"
+                href="#preference"
                 className="pre"
-                onClick={() => handleNavigation("/CreateLead")}
+                onClick={() => handleNavigation("/preference")}
               >
                 <FontAwesomeIcon icon={faCog} size="1x" />
                 <div style={{ marginLeft: "1.5em", fontSize: 15 }}>

@@ -12,6 +12,10 @@ import TaskList from "./layouts/tasks/tasksList/TasksList";
 import LeadList from "./examples/LeadsList/LeadList";
 import CreateLead from "./examples/LeadsList/CreateLead";
 import CreateEvent from "./layouts/calender/CreateEvent";
+import Preference from "./layouts/Preference/preference";
+import SearchForm from "./layouts/navbar/Search/searchForm";
+// import ProfileForm from "./layouts/Preference/Profile/profile";
+import CalendarForm from "./layouts/Preference/Calender/CalenderForm";
 
 function App() {
   return (
@@ -31,6 +35,10 @@ function App() {
             <Route path="/CreateLead" element={<CreateLead />} />
             <Route path="/CreateEvent" element={<CreateEvent />} />
             <Route path="/taskList" element={<TaskList />} />
+            <Route path="/preference" element={<Preference />} />
+            {/* <Route path="/profile" element={<ProfileForm />} /> */}
+            <Route path="/searchForm" element={<SearchForm />} />
+            <Route path="/CalendarForm" element={<CalendarForm />} />
           </Routes>
         </main>
       </div>
