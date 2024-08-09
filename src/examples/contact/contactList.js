@@ -36,7 +36,7 @@ const ContactList = ({ contacts }) => {
         <div className="page-title">
           <h2 className="h2">Contacts</h2>
           <h2 className="link">
-            <Link to="/home">Dashboard/Home</Link>
+            <Link to="/">Dashboard</Link> / Home
           </h2>
         </div>
       </div>
@@ -55,17 +55,15 @@ const ContactList = ({ contacts }) => {
                       aria-label="Basic example"
                     >
                       <a href="/exportContacts" className="btn-success">
-                        Export CSV
+                        <a href="./images/G1.svg" download="6rsobt9c.svg">
+                          Export CSV
+                        </a>
                       </a>
                     </div>
                     <div className="col-md-6 text-end">
                       <Button>
-                        <Link
-                          to="/CobtactForm/CreateContact"
-                          className="btn-new"
-                        >
+                        <Link to="/CreateContact" className="btn-new">
                           New
-                          {/* <CreateContact /> */}
                         </Link>
                       </Button>
                     </div>

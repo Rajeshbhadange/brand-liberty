@@ -16,6 +16,7 @@ import Preference from "./layouts/Preference/preference";
 import SearchForm from "./layouts/navbar/Search/searchForm";
 // import ProfileForm from "./layouts/Preference/Profile/profile";
 import CalendarForm from "./layouts/Preference/Calender/CalenderForm";
+import ReportDateModal from "./layouts/calender/ReportDate";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             {/* <Route path="/profile" element={<ProfileForm />} /> */}
             <Route path="/searchForm" element={<SearchForm />} />
             <Route path="/CalendarForm" element={<CalendarForm />} />
+            <Route path="/ReportDate" element={<ReportDateModal />} />
           </Routes>
         </main>
       </div>

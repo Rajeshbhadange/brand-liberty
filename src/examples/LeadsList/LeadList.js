@@ -6,6 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 import Checkbox from "@mui/material/Checkbox";
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import {
   Container,
@@ -14,7 +15,6 @@ import {
   CardContent,
   Typography,
   Breadcrumbs,
-  Link,
   Button,
   Table,
   TableHead,
@@ -223,7 +223,7 @@ function LeadList() {
                 Leads
               </Typography>
               <Breadcrumbs aria-label="breadcrumb">
-                <Link href="#Dashboard" color="textPrimary">
+                <Link to="/" color="textPrimary">
                   Dashboard
                 </Link>
                 <Typography color="inherit">Leads</Typography>
@@ -241,13 +241,22 @@ function LeadList() {
                   alignItems="center"
                 >
                   <Grid item>
-                    <Button variant="contained" color="success">
+                    <Button
+                      variant="contained"
+                      color="success"
+                      component="a"
+                      href="/Contacts_2024-08-09_06_09_58.csv"
+                      download="contacts_2024-08-09_06_09_58.csv"
+                      sx={{ color: "white" }}
+                    >
                       Export CSV
                     </Button>
                   </Grid>
                   <Grid item>
                     <Button variant="contained" color="primary">
-                      New
+                      <Link to="/CreateLead" sx={{ color: "white" }}>
+                        New
+                      </Link>
                     </Button>
                   </Grid>
                 </Grid>

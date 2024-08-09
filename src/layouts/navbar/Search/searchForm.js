@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Link } from "react-router-dom";
 import {
   FormControl,
   InputLabel,
@@ -15,7 +17,9 @@ import {
   TableRow,
   Paper,
   Grid,
+  IconButton,
 } from "@mui/material";
+import { Box } from "@mui/system";
 
 const modules = [
   { value: "", label: "Select module" },
@@ -93,6 +97,16 @@ const SearchForm = () => {
     }
   };
 
+  const removeCondition = (index, type) => {
+    const newConditions = [...(type === "or" ? conditionsOr : conditionsAnd)];
+    newConditions.splice(index, 1);
+    if (type === "or") {
+      setConditionsOr(newConditions);
+    } else {
+      setConditionsAnd(newConditions);
+    }
+  };
+
   const handleSearch = (event) => {
     event.preventDefault();
     // Perform search and set results
@@ -100,213 +114,233 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="card">
-      <div
-        className="card-body"
-        style={{
-          margin: "2em",
-          backgroundColor: "white",
-          border: "2px solid #f2f2f2",
-          borderRadius: "6px",
-          boxShadow: "0px 2px 3px #f2f2f2",
-        }}
-      >
-        <FormControl sx={{ width: "60%", maxWidth: "500px" }}>
+    <>
+      <h2 className="cc-link">
+        <div className="header-container" tyle={{ marginLeft: "15px" }}>
+          <h5 s>Search</h5>
+          <h6>
+            <Link to="/">Dashboard</Link>
+            <span id="sp"> / Search</span>
+          </h6>
+        </div>
+      </h2>
+      <div className="card">
+        <div
+          className="card-body"
+          style={{
+            marginLeft: "2em",
+            backgroundColor: "white",
+            border: "2px solid #f2f2f2",
+            borderRadius: "6px",
+            boxShadow: "0px 2px #f2f2f2",
+            marginTop: "-2em",
+          }}
+        >
           <InputLabel>Select module</InputLabel>
-          <Select value={module} onChange={handleModuleChange}>
-            {modules.map((mod) => (
-              <MenuItem key={mod.value} value={mod.value}>
-                {mod.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          <FormControl sx={{ width: "60%", maxWidth: "500px" }}>
+            <Select value={module} onChange={handleModuleChange}>
+              {modules.map((mod) => (
+                <MenuItem key={mod.value} value={mod.value}>
+                  {mod.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-        <form onSubmit={handleSearch}>
-          <h3>One of the condition must meet (OR Operator)</h3>
-          <Grid container spacing={3}>
-            {conditionsOr.map((condition, index) => (
-              <Grid item xs={12} key={index}>
-                <Grid container spacing={2}>
-                  <Grid item xs={3.5}>
-                    <FormControl fullWidth>
-                      <InputLabel>Field</InputLabel>
-                      <Select
-                        name="field"
-                        value={condition.field}
-                        onChange={(event) =>
-                          handleConditionChange(index, "or", event)
-                        }
-                      >
-                        {fields.map((field) => (
-                          <MenuItem key={field.value} value={field.value}>
-                            {field.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={3.5}>
-                    <FormControl fullWidth>
-                      <InputLabel>Operator</InputLabel>
-                      <Select
-                        name="operator"
-                        value={condition.operator}
-                        onChange={(event) =>
-                          handleConditionChange(index, "or", event)
-                        }
-                      >
-                        {operators.map((operator) => (
-                          <MenuItem key={operator.value} value={operator.value}>
-                            {operator.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={3.5}>
-                    <TextField
-                      name="value"
-                      label="Value"
-                      value={condition.value}
-                      onChange={(event) =>
-                        handleConditionChange(index, "or", event)
-                      }
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={1}>
-                    <TextField
-                      name="Action"
-                      label="Action"
-                      value={condition.value}
-                      // onChange={(event) =>
-                      //   handleConditionChange(index, "and", event)
-                      // }
-                      // fullWidth
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-            ))}
-          </Grid>
-          <Button onClick={() => addCondition("or")} sx={{ mt: 2 }}>
-            <AddIcon sx={{ fontSize: 25, color: "primary.main" }} /> Add
-            Condition
-          </Button>
+          <form onSubmit={handleSearch}>
+            <h3>One of the condition must meet (OR Operator)</h3>
+            <Box sx={{ border: "2px solid #f2f2f2", p: 2 }}>
+              <Grid container spacing={3}>
+                {conditionsOr.map((condition, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={3.5}>
+                        <InputLabel>Field</InputLabel>
+                        <FormControl fullWidth>
+                          <Select
+                            name="field"
+                            value={condition.field}
+                            onChange={(event) =>
+                              handleConditionChange(index, "or", event)
+                            }
+                          >
+                            {fields.map((field) => (
+                              <MenuItem key={field.value} value={field.value}>
+                                {field.label}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={3.5}>
+                        <InputLabel>Operator</InputLabel>
+                        <FormControl fullWidth>
+                          <Select
+                            name="operator"
+                            value={condition.operator}
+                            onChange={(event) =>
+                              handleConditionChange(index, "or", event)
+                            }
+                          >
+                            {operators.map((operator) => (
+                              <MenuItem
+                                key={operator.value}
+                                value={operator.value}
+                              >
+                                {operator.label}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={3.5}>
+                        <InputLabel>Value</InputLabel>
+                        <TextField
+                          name="value" // Specify the input type if necessary
+                          value={condition.value}
+                          onChange={(event) =>
+                            handleConditionChange(index, "or", event)
+                          }
+                          fullWidth
+                        />
+                      </Grid>
 
-          <h3>All conditions must be met (AND Operator)</h3>
-          <Grid container spacing={4}>
-            {conditionsAnd.map((condition, index) => (
-              <Grid item xs={12} key={index}>
-                <Grid container spacing={2}>
-                  <Grid item xs={3.5}>
-                    <FormControl fullWidth>
-                      <InputLabel>Field</InputLabel>
-                      <Select
-                        name="field"
-                        value={condition.field}
-                        onChange={(event) =>
-                          handleConditionChange(index, "and", event)
-                        }
-                      >
-                        {fields.map((field) => (
-                          <MenuItem key={field.value} value={field.value}>
-                            {field.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
+                      <Grid item xs={1}>
+                        <InputLabel>Delete</InputLabel>
+                        <IconButton
+                          onClick={() => removeCondition(index, "or")}
+                          color="error"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </Grid>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={3.5}>
-                    <FormControl fullWidth>
-                      <InputLabel>Operator</InputLabel>
-                      <Select
-                        name="operator"
-                        value={condition.operator}
-                        onChange={(event) =>
-                          handleConditionChange(index, "and", event)
-                        }
-                      >
-                        {operators.map((operator) => (
-                          <MenuItem key={operator.value} value={operator.value}>
-                            {operator.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={3.5}>
-                    <TextField
-                      name="value"
-                      label="Value"
-                      value={condition.value}
-                      onChange={(event) =>
-                        handleConditionChange(index, "and", event)
-                      }
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={1}>
-                    <TextField
-                      name="Action"
-                      label="Action"
-                      value={condition.value}
-                      onChange={(event) =>
-                        handleConditionChange(index, "and", event)
-                      }
-                      fullWidth
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-            ))}
-          </Grid>
-          <Button sx={{ mt: "20px" }} onClick={() => addCondition("and")}>
-            <AddIcon sx={{ fontSize: 25, color: "primary.main" }} /> Add
-            Condition
-          </Button>
-
-          <Button
-            sx={{ mt: "20px", ml: "20px" }}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            Search
-          </Button>
-        </form>
-
-        {searchResults.length > 0 ? (
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Mobile Number</TableCell>
-                  <TableCell>Assign To</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {searchResults.map((row) => (
-                  <TableRow key={row.id}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.mobile_number}</TableCell>
-                    <TableCell>{row.assign_to}</TableCell>
-                  </TableRow>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        ) : (
-          <div></div>
-        )}
+              </Grid>
+
+              <Button onClick={() => addCondition("or")} sx={{ mt: 2 }}>
+                <AddIcon sx={{ fontSize: 25, color: "primary.main" }} /> Add
+                Condition
+              </Button>
+            </Box>
+
+            <h3>All conditions must be met (AND Operator)</h3>
+            <Box sx={{ border: "2px solid #f2f2f2", p: 2 }}>
+              <Grid container spacing={4}>
+                {conditionsAnd.map((condition, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={3.5}>
+                        <InputLabel>Field</InputLabel>
+                        <FormControl fullWidth>
+                          <Select
+                            name="field"
+                            value={condition.field}
+                            onChange={(event) =>
+                              handleConditionChange(index, "and", event)
+                            }
+                          >
+                            {fields.map((field) => (
+                              <MenuItem key={field.value} value={field.value}>
+                                {field.label}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={3.5}>
+                        <InputLabel>Operator</InputLabel>
+                        <FormControl fullWidth>
+                          <Select
+                            name="operator"
+                            value={condition.operator}
+                            onChange={(event) =>
+                              handleConditionChange(index, "and", event)
+                            }
+                          >
+                            {operators.map((operator) => (
+                              <MenuItem
+                                key={operator.value}
+                                value={operator.value}
+                              >
+                                {operator.label}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={3.5}>
+                        <InputLabel>Value</InputLabel>
+                        <TextField
+                          name="value"
+                          value={condition.value}
+                          onChange={(event) =>
+                            handleConditionChange(index, "and", event)
+                          }
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={1}>
+                        <InputLabel>Delete</InputLabel>
+                        <IconButton
+                          onClick={() => removeCondition(index, "and")}
+                          color="error"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                ))}
+              </Grid>
+
+              <Button sx={{ mt: "20px" }} onClick={() => addCondition("and")}>
+                <AddIcon sx={{ fontSize: 25, color: "primary.main" }} /> Add
+                Condition
+              </Button>
+            </Box>
+            <Button
+              sx={{ mt: "20px", ml: "20px" }}
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
+              Search
+            </Button>
+          </form>
+
+          {searchResults.length > 0 ? (
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>ID</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Email</TableCell>
+                    <TableCell>Mobile Number</TableCell>
+                    <TableCell>Assign To</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {searchResults.map((row) => (
+                    <TableRow key={row.id}>
+                      <TableCell>{row.id}</TableCell>
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell>{row.email}</TableCell>
+                      <TableCell>{row.mobile_number}</TableCell>
+                      <TableCell>{row.assign_to}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

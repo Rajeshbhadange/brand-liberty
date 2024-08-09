@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   TextField,
   Select,
+  Grid,
   MenuItem,
   FormControl,
   InputLabel,
@@ -47,159 +49,198 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-12">
-          <div className="page-title-box d-flex align-items-center justify-content-between">
-            <h4 className="mb-0">Create Event</h4>
-            <div className="page-title-right">
-              <ol className="breadcrumb m-0">
-                <li className="breadcrumb-item">
-                  <a href="javascript: void(0);">Dashboard</a>
-                </li>
-                <li className="breadcrumb-item active">Create Event</li>
-              </ol>
-            </div>
-          </div>
+    <>
+      <h4
+        className="mb-0"
+        style={{
+          marginLeft: "15px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        Create Event
+        <div className="page-title-right">
+          <Link to="/">Dashboard</Link> / Create Event
         </div>
-      </div>
-      <div className="row">
-        <div className="col-xl-12">
-          <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <input
-              type="hidden"
-              name="_token"
-              value="jUoZsrMgw53TS5BaN3bALPnMHAwDZvHkCEw7CPam"
-            />
-            <input type="hidden" name="_method" value="POST" />
+      </h4>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12"></div>
+        </div>
+        <div className="row">
+          <div className="col-xl-12">
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <input
+                type="hidden"
+                name="_token"
+                value="jUoZsrMgw53TS5BaN3bALPnMHAwDZvHkCEw7CPam"
+              />
+              <input type="hidden" name="_method" value="POST" />
 
-            <div className="card">
-              <div className="card-body">
-                <h4 className="card-title mb-3">Basic Information</h4>
-                <div className="row">
-                  <div className="col-md-6 padding-0">
-                    <FormControl fullWidth margin="normal">
-                      <TextField
-                        label="Title"
-                        required
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                      />
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={allDay}
-                            onChange={(e) => setAllDay(e.target.checked)}
+              <div
+                className="card"
+                style={{ backgroundColor: "#FFF", pt: "-2" }}
+              >
+                <div className="card-body" style={{ pt: "-2em" }}>
+                  <h4 className="card-title">Basic Information</h4>
+                  <div className="row">
+                    <div className="col-md-6 padding-0">
+                      <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                          <InputLabel>Title</InputLabel>
+                          <FormControl fullWidth margin="normal">
+                            <TextField
+                              required
+                              value={title}
+                              onChange={(e) => setTitle(e.target.value)}
+                            />
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <InputLabel>Assign User</InputLabel>
+                          <FormControl fullWidth margin="normal">
+                            <Select
+                              value={assignTo}
+                              onChange={(e) => setAssignTo(e.target.value)}
+                            >
+                              <MenuItem value="1">XfinitySoft</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={5} marginTop="-2em">
+                          <FormControl fullWidth margin="normal">
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={allDay}
+                                  onChange={(e) => setAllDay(e.target.checked)}
+                                />
+                              }
+                              label="All Day"
+                            />
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={5} marginTop="-1em" marginLeft="7em">
+                          <FormControl fullWidth margin="normal">
+                            <label>Date Start</label>
+                            <Flatpickr
+                              value={dateStart}
+                              onChange={([date]) => setDateStart(date)}
+                              options={{
+                                enableTime: true,
+                                dateFormat: "Y-m-d H:i:s",
+                                padding: "20px",
+                              }}
+                            />
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={5} marginTop="-2em">
+                          <InputLabel>Status</InputLabel>
+                          <FormControl fullWidth margin="normal">
+                            <Select
+                              value={status}
+                              onChange={(e) => setStatus(e.target.value)}
+                            >
+                              <MenuItem value="">Select Status</MenuItem>
+                              <MenuItem value="planned">Planned</MenuItem>
+                              <MenuItem value="held">Held</MenuItem>
+                              <MenuItem value="not held">Not Held</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={5} marginTop="-1em" marginLeft="7em">
+                          <FormControl fullWidth margin="normal" p="10px">
+                            <label>Date End</label>
+                            <Flatpickr
+                              value={dateEnd}
+                              onChange={([date]) => setDateEnd(date)}
+                              options={{
+                                enableTime: true,
+                                dateFormat: "Y-m-d H:i:s",
+                              }}
+                            />
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <InputLabel>Activity Type</InputLabel>
+                          <FormControl fullWidth margin="normal">
+                            <Select
+                              value={activityType}
+                              onChange={(e) => setActivityType(e.target.value)}
+                            >
+                              <MenuItem value="">Select Activity Type</MenuItem>
+                              <MenuItem value="call">Call</MenuItem>
+                              <MenuItem value="meeting">Meeting</MenuItem>
+                              <MenuItem value="dinner">Dinner</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                      </Grid>
+                      <Grid marginTop={2}>
+                        <InputLabel>Sync with Google</InputLabel>
+                        <FormControl>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={sync}
+                                onChange={(e) => setSync(e.target.checked)}
+                              />
+                            }
                           />
-                        }
-                        label="All Day"
-                      />
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <InputLabel>Status</InputLabel>
-                      <Select
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                      >
-                        <MenuItem value="">Select Status</MenuItem>
-                        <MenuItem value="planned">Planned</MenuItem>
-                        <MenuItem value="held">Held</MenuItem>
-                        <MenuItem value="not held">Not Held</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <InputLabel>Activity Type</InputLabel>
-                      <Select
-                        value={activityType}
-                        onChange={(e) => setActivityType(e.target.value)}
-                      >
-                        <MenuItem value="">Select Activity Type</MenuItem>
-                        <MenuItem value="call">Call</MenuItem>
-                        <MenuItem value="meeting">Meeting</MenuItem>
-                        <MenuItem value="dinner">Dinner</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={sync}
-                            onChange={(e) => setSync(e.target.checked)}
-                          />
-                        }
-                        label="Sync with Google"
-                      />
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <InputLabel>Visibility</InputLabel>
-                      <Select
-                        value={visibility}
-                        onChange={(e) => setVisibility(e.target.value)}
-                      >
-                        <MenuItem value="">Select Visibility</MenuItem>
-                        <MenuItem value="public">Public</MenuItem>
-                        <MenuItem value="private">Private</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <TextField
-                        label="Description"
-                        multiline
-                        rows={4}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                      />
-                    </FormControl>
-                  </div>
-                  <div className="col-md-6 padding-0">
-                    <FormControl fullWidth margin="normal">
-                      <InputLabel>Assign User</InputLabel>
-                      <Select
-                        value={assignTo}
-                        onChange={(e) => setAssignTo(e.target.value)}
-                      >
-                        <MenuItem value="1">XfinitySoft</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <label>Date Start</label>
-                      <Flatpickr
-                        value={dateStart}
-                        onChange={([date]) => setDateStart(date)}
-                        options={{
-                          enableTime: true,
-                          dateFormat: "Y-m-d H:i:s",
-                        }}
-                      />
-                    </FormControl>
-                    <FormControl fullWidth margin="normal">
-                      <label>Date End</label>
-                      <Flatpickr
-                        value={dateEnd}
-                        onChange={([date]) => setDateEnd(date)}
-                        options={{
-                          enableTime: true,
-                          dateFormat: "Y-m-d H:i:s",
-                        }}
-                      />
-                    </FormControl>
+                        </FormControl>
+                      </Grid>
+                      <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                          <InputLabel>Visibility</InputLabel>
+                          <FormControl fullWidth margin="normal">
+                            <Select
+                              value={visibility}
+                              onChange={(e) => setVisibility(e.target.value)}
+                            >
+                              <MenuItem value="">Select Visibility</MenuItem>
+                              <MenuItem value="public">Public</MenuItem>
+                              <MenuItem value="private">Private</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                      </Grid>
+                      <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                          <FormControl fullWidth margin="normal">
+                            <TextField
+                              label="Description"
+                              multiline
+                              rows={4}
+                              value={description}
+                              onChange={(e) => setDescription(e.target.value)}
+                            />
+                          </FormControl>
+                        </Grid>
+                      </Grid>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="card">
-              <div className="card-body">
-                <Button type="submit" variant="contained" color="primary">
-                  Save
-                </Button>
+              <div
+                className="card"
+                style={{
+                  bordar: "2px solid #f2f2f2",
+                  backgroundColor: "white",
+                  marginTop: "15px",
+                  borderRadius: "4px",
+                }}
+              >
+                <div className="card-body">
+                  <Button type="submit" variant="contained" color="primary">
+                    Save
+                  </Button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

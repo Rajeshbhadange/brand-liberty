@@ -73,7 +73,7 @@ const App = () => {
         >
           <div className="name">Dashboard</div>
           <div className="dh">
-            <a href="#Dashboard">Dashboard</a>/Home
+            <a href="#Dashboard.js">Dashboard</a>/Home
           </div>
 
           <Card>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -117,7 +118,7 @@ const CreateLead = () => {
         <div className="header-container">
           <h5>Create Leads</h5>
           <h6>
-            <a href="/Dashboard">Dashboard</a>
+            <Link to="/">Dashboard</Link>
             <span id="sp"> / Create Leads</span>
           </h6>
         </div>
